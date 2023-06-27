@@ -14,3 +14,11 @@ C:\Estudos\RPG_Grupo3\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.
 C:\Estudos\RPG_Grupo3\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.csproj.CoreCompileInputs.cache
 C:\Estudos\RPG_Grupo3\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.exe
 C:\Estudos\RPG_Grupo3\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.pdb
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\bin\Debug\DungeonsAndDevs.exe.config
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\bin\Debug\DungeonsAndDevs.exe
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\bin\Debug\DungeonsAndDevs.pdb
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.csproj.AssemblyReference.cache
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.csproj.SuggestedBindingRedirects.cache
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.csproj.CoreCompileInputs.cache
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.exe
+D:\GitHubRepositories\Call_From_The_Deep_Waters\DungeonsAndDevs\DungeonsAndDevs\obj\Debug\DungeonsAndDevs.pdb

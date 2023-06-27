@@ -13,7 +13,13 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 	public class Player : Character
 	{
 		public PlayerClass playerClass { get; set; }
-		private void setInitialStats()
+		public Player()
+		{
+			Skills = new List<Utils.Skill>();
+			Advantages = new List<DamageType>();
+			Disadvantages = new List<DamageType>();
+		}
+		public void setInitialStats()
 		{
 			if (string.IsNullOrWhiteSpace(Name))
 			{

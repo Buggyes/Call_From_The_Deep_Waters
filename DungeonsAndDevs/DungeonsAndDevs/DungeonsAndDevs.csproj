@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicação\Jogo\TextDisplay.cs" />
     <Compile Include="Aplicação\Jogo\Combat.cs" />
+    <Compile Include="Aplicação\Jogo\MainGame.cs" />
     <Compile Include="Entidades\Personagens\Character.cs" />
     <Compile Include="Entidades\Personagens\Inimigos\Enemy.cs" />
     <Compile Include="Entidades\Personagens\Jogador\Player.cs" />

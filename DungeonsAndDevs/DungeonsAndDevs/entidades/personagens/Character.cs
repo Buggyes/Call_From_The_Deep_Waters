@@ -20,8 +20,17 @@ namespace DungeonsAndDevs.Entidades.Personagens
 		public List<DamageType> Disadvantages { get; set; }
 		public List<DOT> ActiveDOTs { get; set; }
 		public List<int> DOTTurnsToWearOff { get; set; }
+		private Random random = new Random();
+		protected Character()
+		{
+			Skills = new List<Utils.Skill>();
+			Advantages = new List<DamageType>();
+			Disadvantages = new List<DamageType>();
+			ActiveDOTs = new List<DOT>();
+			DOTTurnsToWearOff = new List<int>();
+		}
 
-		public int TakeSkillDamage(Skill skill, int targetDefense, int targetHealth)
+		public int TakeSkillDamage(Skill skill)
 		{
 			ApplyDOT(skill.Type);
 			double calcDamage = skill.BaseDmg;
@@ -39,41 +48,42 @@ namespace DungeonsAndDevs.Entidades.Personagens
 					calcDamage *= 0.80;
 				}
 			}
-			double damageReduction = targetDefense / (targetDefense + 40);
-			double finalHealth = targetHealth - (calcDamage - (calcDamage * damageReduction));
-			targetHealth = (int)finalHealth;
-			return targetHealth;
+			double damageReduction = Defense / (Defense + 40);
+			double finalHealth = Health - (calcDamage - (calcDamage * damageReduction));
+			Health = (int)finalHealth;
+			int finalDamage = (int)(calcDamage - (calcDamage * damageReduction));
+			Console.WriteLine(Name+ "recebeu "+finalDamage+" de dano "+skill.Type.ToString());
+            return Health;
 		}
 		//Fire = 70%
 		//Bleed = 60%
 		//Poison = 50%
 		protected void ApplyDOT(DamageType damageType)
 		{
-			Random random = new Random();
 			int proc = 0;
 			switch (damageType)
 			{
-				case DamageType.fire:
+				case DamageType.fogo:
 					proc = random.Next(100);
 					if(proc < 70)
 					{
-						ActiveDOTs.Add(DOT.fire);
+						ActiveDOTs.Add(DOT.fogo);
 						DOTTurnsToWearOff.Add(3);
 					}
 					break;
-				case DamageType.bleed:
+				case DamageType.sangramento:
 					proc = random.Next(100);
 					if (proc < 60)
 					{
-						ActiveDOTs.Add(DOT.bleed);
+						ActiveDOTs.Add(DOT.sangramento);
 						DOTTurnsToWearOff.Add(5);
 					}
 					break;
-				case DamageType.poison:
+				case DamageType.veneno:
 					proc = random.Next(100);
 					if (proc < 50)
 					{
-						ActiveDOTs.Add(DOT.poison);
+						ActiveDOTs.Add(DOT.veneno);
 						DOTTurnsToWearOff.Add(7);
 					}
 					break;
@@ -81,21 +91,27 @@ namespace DungeonsAndDevs.Entidades.Personagens
 		}
 		public void UpdateDOTs()
 		{
+			int fireTotal = 0,
+				bleedTotal = 0,
+				poisonTotal = 0;
+
 			for (int i = 0; i < ActiveDOTs.Count; i++)
 			{
 				switch (ActiveDOTs[i])
 				{
-					case DOT.fire:
+					case DOT.fogo:
 						Health -= 10;
+						fireTotal += 10;
 						DOTTurnsToWearOff[i]--;
-						if (DOTTurnsToWearOff[i] == 0)
+                        if (DOTTurnsToWearOff[i] == 0)
 						{
 							ActiveDOTs.Remove(ActiveDOTs[i]);
 							DOTTurnsToWearOff.Remove(DOTTurnsToWearOff[i]);
 						}
 						break;
-					case DOT.bleed:
+					case DOT.sangramento:
 						Health -= 8;
+						bleedTotal += 8;
 						DOTTurnsToWearOff[i]--;
 						if (DOTTurnsToWearOff[i] == 0)
 						{
@@ -103,8 +119,9 @@ namespace DungeonsAndDevs.Entidades.Personagens
 							DOTTurnsToWearOff.Remove(DOTTurnsToWearOff[i]);
 						}
 						break;
-					case DOT.poison:
+					case DOT.veneno:
 						Health -= 5;
+						poisonTotal += 5;
 						DOTTurnsToWearOff[i]--;
 						if (DOTTurnsToWearOff[i] == 0)
 						{
@@ -114,6 +131,18 @@ namespace DungeonsAndDevs.Entidades.Personagens
 						break;
 				}
 			}
-        }
+			if(fireTotal != 0)
+			{
+				Console.WriteLine(Name + " recebe " + fireTotal + " de dano de fogo");
+			}
+			if (bleedTotal != 0)
+			{
+				Console.WriteLine(Name + " recebe " + bleedTotal + " de dano de sangramento");
+			}
+			if (poisonTotal != 0)
+			{
+				Console.WriteLine(Name + " recebe " + poisonTotal + " de dano de veneno");
+			}
+		}
 	}
 }

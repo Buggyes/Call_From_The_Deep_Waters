@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicação\Jogo\Combat.cs" />
     <Compile Include="Entidades\Personagens\Character.cs" />
     <Compile Include="Entidades\Personagens\Inimigos\Enemy.cs" />
     <Compile Include="Entidades\Personagens\Jogador\Player.cs" />
@@ -55,9 +56,7 @@
     <None Include="App.config" />
     <None Include="bin\Debug\DungeonsAndDevs.exe.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Aplicação\Jogo\Combate\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="bin\Debug\DungeonsAndDevs.exe" />
     <Content Include="bin\Debug\DungeonsAndDevs.pdb" />

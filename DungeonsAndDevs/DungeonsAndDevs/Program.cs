@@ -15,6 +15,7 @@ namespace DungeonsAndDevs
             Player pl = new Player();
             pl.playerClass = PlayerClass.diver;
             pl.setInitialStats();
-        }
+            pl.TakeSkillDamage(pl.Skills[0]);
+		}
     }
 }

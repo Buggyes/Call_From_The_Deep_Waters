@@ -29,8 +29,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 			ActiveDOTs = new List<DOT>();
 			DOTTurnsToWearOff = new List<int>();
 		}
-
-		public int TakeSkillDamage(Skill skill)
+		public int TakeSkillDamage(Skill skill, Character agressor)
 		{
 			ApplyDOT(skill.Type);
 			double calcDamage = skill.BaseDmg;
@@ -48,6 +47,8 @@ namespace DungeonsAndDevs.Entidades.Personagens
 					calcDamage *= 0.80;
 				}
 			}
+			double strengthFactor = agressor.Strength / 100.0;
+			calcDamage *= (1 + strengthFactor);
 			double damageReduction = Defense / (Defense + 40);
 			double finalHealth = Health - (calcDamage - (calcDamage * damageReduction));
 			Health = (int)finalHealth;

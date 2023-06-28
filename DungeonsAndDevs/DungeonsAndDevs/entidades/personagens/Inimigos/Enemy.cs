@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DungeonsAndDevs.Entidades.Personagens.Jogador;
+
 namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 {
 	public class Enemy : Character
 	{
 		public bool boss { get; set; }
+		public int xpGiven { get; private set; }
 
 		public void PickStats(int enemyIndex, int stage)
 		{
+			int addxp = 0;
 			if (boss)
 			{
 				switch (enemyIndex)
@@ -26,6 +30,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Skills.Add(new Utils.Skill("Cuspe Ácido", DamageType.veneno, 6, 0, false));
 						Advantages.Add(DamageType.sangramento);
 						Disadvantages.Add(DamageType.explosao);
+						addxp = random.Next(6);
+						xpGiven = 10 + addxp;
 						break;
 					case 1:
 						Name = "Vorax, o Megalodon";
@@ -37,6 +43,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Skills.Add(new Utils.Skill("Torrente do Fim dos Tempos", DamageType.impacto, 30, 50, false));
 						Advantages.Add(DamageType.sangramento);
 						Disadvantages.Add(DamageType.explosao);
+						addxp = random.Next(11);
+						xpGiven = 20 + addxp;
 						break;
 					case 2:
 						Name = "Kraken, o Polvo Colossal";
@@ -49,6 +57,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Advantages.Add(DamageType.impacto);
 						Advantages.Add(DamageType.veneno);
 						Disadvantages.Add(DamageType.fogo);
+						addxp = random.Next(16);
+						xpGiven = 30 + addxp;
 						break;
 				}
 			}
@@ -65,6 +75,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Skills.Add(new Utils.Skill("Presas Implacáveis", DamageType.sangramento, 6, 0, false));
 						Skills.Add(new Utils.Skill("Espiral do Terror", DamageType.corte, 10, 0, false));
 						Disadvantages.Add(DamageType.impacto);
+						addxp = random.Next(6);
+						xpGiven = 5 + addxp;
 						break;
 					case 1:
 						Name = "Cardume de Tainha";
@@ -76,6 +88,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Skills.Add(new Utils.Skill("Redemoinho Prateado", DamageType.sangramento, 7, 0, false));
 						Advantages.Add(DamageType.perfuracao);
 						Disadvantages.Add(DamageType.explosao);
+						addxp = random.Next(6);
+						xpGiven = 5 + addxp;
 						break;
 					case 2:
 						Name = "Água Viva";
@@ -87,16 +101,25 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						Skills.Add(new Utils.Skill("Dança Tóxica", DamageType.veneno, 6, 0, false));
 						Advantages.Add(DamageType.perfuracao);
 						Disadvantages.Add(DamageType.explosao);
+						addxp = random.Next(6);
+						xpGiven = 5 + addxp;
 						break;
 				}
 			}
-			double calcHealth = CurrentHealth + (CurrentHealth * (stage / 100));
+			double calcHealth = CurrentHealth + (CurrentHealth * (stage / 10));
 			CurrentHealth = (int)calcHealth;
-			double calcStrength = Strength + (Strength * (stage / 100));
+			double calcStrength = Strength + (Strength * (stage / 10));
 			Strength = (int)calcStrength;
-			double calcDefense = Defense + (Defense * (stage / 100));
+			double calcDefense = Defense + (Defense * (stage / 10));
 			Defense = (int)calcDefense;
+			double calcXpGiven = xpGiven + (xpGiven * (stage / 10));
+			xpGiven = (int)calcXpGiven;
 			MaximumHealth = CurrentHealth;
+		}
+		public int GiveXP(int playerXP)
+		{
+			playerXP += xpGiven;
+			return playerXP;
 		}
 	}
 }

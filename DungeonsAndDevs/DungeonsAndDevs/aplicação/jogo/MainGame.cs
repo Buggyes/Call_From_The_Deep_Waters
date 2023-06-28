@@ -59,6 +59,9 @@ namespace DungeonsAndDevs.Aplicação.Jogo
 						bossCountdown = 0;
 					}
 					enemy.PickStats(rollEnemy,stage);
+					player.CurrentHealth = player.MaximumHealth;
+					player.ActiveDOTs.Clear();
+					player.DOTTurnsToWearOff.Clear();
 					do
 					{
 					PlayerTurn:
@@ -97,7 +100,13 @@ namespace DungeonsAndDevs.Aplicação.Jogo
 						TextDisplay.DisplayDeath(player, enemy);
                         gameEnded = true;
 					}
+					else
+					{
+						player.CurrentExp = enemy.GiveXP(player.CurrentExp);
+						player.checkLevel();
+					}
 				} while (!gameEnded);
+
 			QuitScreen:
 				Console.WriteLine("Sair do jogo?");
 				Console.WriteLine("1 - Sim");

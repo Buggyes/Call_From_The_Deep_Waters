@@ -187,6 +187,7 @@ namespace DungeonsAndDevs.Aplicação.Jogo
 		public static void DisplayPlayer(Player player)
 		{
             Console.WriteLine(player.playerClass.ToString()+"(a): "+player.Name);
+            Console.WriteLine("Nível: "+player.level);
             Console.WriteLine("Vida: " + player.CurrentHealth + @"/" + player.MaximumHealth);
 			Console.WriteLine("Força: " + player.Strength);
 			Console.WriteLine("Defesa: " + player.Defense);

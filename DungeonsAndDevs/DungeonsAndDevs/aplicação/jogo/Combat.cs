@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using DungeonsAndDevs.Entidades.Personagens;
 using DungeonsAndDevs.Entidades.Personagens.Inimigos;
+using DungeonsAndDevs.Entidades.Personagens.Jogador;
 
 namespace DungeonsAndDevs.Aplicação.Jogo
 {

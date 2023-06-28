@@ -49,11 +49,12 @@ namespace DungeonsAndDevs.Entidades.Personagens
 			}
 			double strengthFactor = agressor.Strength / 100.0;
 			calcDamage *= (1 + strengthFactor);
-			double damageReduction = Defense / (Defense + 40);
+			double calcDefense = Defense / (1+skill.ArmorPenetration / 100);
+			double damageReduction = (calcDefense / (calcDefense + 40));
 			double finalHealth = Health - (calcDamage - (calcDamage * damageReduction));
 			Health = (int)finalHealth;
 			int finalDamage = (int)(calcDamage - (calcDamage * damageReduction));
-			Console.WriteLine(Name+ "recebeu "+finalDamage+" de dano "+skill.Type.ToString());
+			Console.WriteLine(Name+ "recebeu "+finalDamage+" de dano de "+skill.Type.ToString());
             return Health;
 		}
 		//Fire = 70%

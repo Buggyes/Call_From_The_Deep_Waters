@@ -16,19 +16,38 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 				switch (enemyIndex)
 				{
 					case 0:
-						Name = "Tubarao Branco";
-						Health = 105;
-						Strength = 5;
-						Defense = 3;
-						Skills.Add(new Utils.Skill("Fúria Aquática", DamageType.impacto, 10, 0, false));
-						Skills.Add(new Utils.Skill("Presas Implacáveis", DamageType.sangramento, 5, 0, false));
-						Skills.Add(new Utils.Skill("Espiral do Terror", DamageType.corte, 10, 0, false));
-						Disadvantages.Add(DamageType.corte);
-						Disadvantages.Add(DamageType.perfuracao);
+						Name = "Nerida, A Sereia";
+						Health = 250;
+						Strength = 2;
+						Defense = 0;
+						Skills.Add(new Utils.Skill("Grito Estridente", DamageType.impacto, 8, 0, false));
+						Skills.Add(new Utils.Skill("Lança das Marés", DamageType.perfuracao, 30, 0, false));
+						Skills.Add(new Utils.Skill("Cuspe Ácido", DamageType.veneno, 6, 0, false));
+						Advantages.Add(DamageType.sangramento);
+						Disadvantages.Add(DamageType.explosao);
 						break;
 					case 1:
+						Name = "Vorax, o Megalodon";
+						Health = 400;
+						Strength = 15;
+						Defense = 0;
+						Skills.Add(new Utils.Skill("Fúria das Profundezas", DamageType.impacto, 10, 0, false));
+						Skills.Add(new Utils.Skill("Mordida Devastadora", DamageType.sangramento, 10, 0, false));
+						Skills.Add(new Utils.Skill("Torrente do Fim dos Tempos", DamageType.impacto, 30, 50, false));
+						Advantages.Add(DamageType.sangramento);
+						Disadvantages.Add(DamageType.explosao);
 						break;
 					case 2:
+						Name = "Kraken, o Polvo Colossal";
+						Health = 300;
+						Strength = 20;
+						Defense = 20;
+						Skills.Add(new Utils.Skill("Esmagamento Profundo", DamageType.impacto, 15, 0, false));
+						Skills.Add(new Utils.Skill("Sopro Tempestuoso", DamageType.eletricidade, 8, 0, false));
+						Skills.Add(new Utils.Skill("Abraço Abissal", DamageType.perfuracao, 12, 0, false));
+						Advantages.Add(DamageType.impacto);
+						Advantages.Add(DamageType.veneno);
+						Disadvantages.Add(DamageType.fogo);
 						break;
 				}
 			}
@@ -37,10 +56,36 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 				switch (enemyIndex)
 				{
 					case 0:
+						Name = "Tubarao Branco";
+						Health = 105;
+						Strength = 10;
+						Defense = 3;
+						Skills.Add(new Utils.Skill("Fúria Aquática", DamageType.impacto, 10, 0, false));
+						Skills.Add(new Utils.Skill("Presas Implacáveis", DamageType.sangramento, 6, 0, false));
+						Skills.Add(new Utils.Skill("Espiral do Terror", DamageType.corte, 10, 0, false));
+						Disadvantages.Add(DamageType.impacto);
 						break;
 					case 1:
+						Name = "Cardume de Tainha";
+						Health = 98;
+						Strength = 3;
+						Defense = 10;
+						Skills.Add(new Utils.Skill("Frenesi Aquático", DamageType.impacto, 10, 0, false));
+						Skills.Add(new Utils.Skill("Investida Coletiva", DamageType.perfuracao, 12, 0, false));
+						Skills.Add(new Utils.Skill("Redemoinho Prateado", DamageType.sangramento, 7, 0, false));
+						Advantages.Add(DamageType.perfuracao);
+						Disadvantages.Add(DamageType.explosao);
 						break;
 					case 2:
+						Name = "Água Viva";
+						Health = 95;
+						Strength = 10;
+						Defense = 10;
+						Skills.Add(new Utils.Skill("Choque Elétrico", DamageType.eletricidade, 10, 10, false));
+						Skills.Add(new Utils.Skill("Lesão Arremetida", DamageType.fogo, 8, 0, false));
+						Skills.Add(new Utils.Skill("Dança Tóxica", DamageType.veneno, 6, 0, false));
+						Advantages.Add(DamageType.perfuracao);
+						Disadvantages.Add(DamageType.explosao);
 						break;
 				}
 			}

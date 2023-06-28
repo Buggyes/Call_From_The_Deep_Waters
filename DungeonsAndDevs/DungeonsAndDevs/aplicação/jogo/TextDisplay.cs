@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+
+using DungeonsAndDevs.Entidades.Personagens;
+using DungeonsAndDevs.Entidades.Personagens.Inimigos;
+using DungeonsAndDevs.Entidades.Personagens.Jogador;
+using DungeonsAndDevs.Utils;
 
 namespace DungeonsAndDevs.Aplicação.Jogo
 {
@@ -35,7 +41,61 @@ namespace DungeonsAndDevs.Aplicação.Jogo
             Console.WriteLine(playerName+" embarca em sua jornada ao Tesouro das Profundezas.");
 			AskKey();
 		}
-		private static void AskKey()
+		public static void DisplayEnemy(Enemy enemy)
+		{
+			if (enemy.boss)
+			{
+                Console.WriteLine("Boss: "+enemy.Name);
+            }
+			else
+			{
+                Console.WriteLine("Inimigo: "+enemy.Name);
+            }
+			Console.WriteLine("Vida: " + enemy.CurrentHealth + "/" + enemy.MaximumHealth);
+            Console.WriteLine("Força: "+enemy.Strength);
+            Console.WriteLine("Defesa: "+enemy.Defense);
+            Console.WriteLine();
+        }
+		public static void DisplayPlayer(Player player)
+		{
+            Console.WriteLine(player.playerClass.ToString()+"(a): "+player.Name);
+            Console.WriteLine("Vida: " + player.CurrentHealth + @"/" + player.MaximumHealth);
+			Console.WriteLine("Força: " + player.Strength);
+			Console.WriteLine("Defesa: " + player.Defense);
+            Console.WriteLine("\nHabilidades: ");
+            int skillcount = 0;
+            foreach (Skill skill in player.Skills)
+            {
+                Console.WriteLine((skillcount+1)+" - "+skill.Name+"("+skill.Type.ToString()+")");
+                Console.WriteLine("Dano base = "+skill.BaseDmg+"\n");
+                skillcount++;
+            }
+        }
+		public static void DisplayDeath(Character player, Character enemy)
+		{
+			Random random = new Random();
+			int randDeath = random.Next(5);
+			switch (randDeath)
+			{
+				case 0:
+                    Console.WriteLine(player.Name+" foi brutalmente dilacerado(a) por um(a) "+enemy.Name);
+                    break;
+				case 1:
+					Console.WriteLine(player.Name + " não conseguiu finalizar o(a) " + enemy.Name);
+					break;
+				case 2:
+					Console.WriteLine(player.Name + " viu uma luz no fim do tunel após receber um golpe do(a) " + enemy.Name);
+					break;
+				case 3:
+					Console.WriteLine(player.Name + " bateu as botas enquanto lutava contra o(a) " + enemy.Name);
+					break;
+				case 4:
+					Console.WriteLine(player.Name + " perdeu a consciência enquanto lutava contra " + enemy.Name);
+					break;
+			}
+			AskKey();
+		}
+		public static void AskKey()
 		{
 			Console.WriteLine("(pressione qualquer tecla para continuar)");
 			Console.ReadKey();

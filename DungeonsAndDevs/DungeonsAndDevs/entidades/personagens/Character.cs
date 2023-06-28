@@ -12,7 +12,8 @@ namespace DungeonsAndDevs.Entidades.Personagens
 	public abstract class Character
 	{
 		public string Name { get; set; }
-		public int Health { get; set; }
+		public int MaximumHealth { get; set; }
+		public int CurrentHealth { get; set; }
 		public int Strength { get; set; }
 		public int Defense { get; set; }
 		public List<Skill> Skills { get; set; }
@@ -20,7 +21,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 		public List<DamageType> Disadvantages { get; set; }
 		public List<DOT> ActiveDOTs { get; set; }
 		public List<int> DOTTurnsToWearOff { get; set; }
-		private Random random = new Random();
+		protected Random random = new Random();
 		protected Character()
 		{
 			Skills = new List<Utils.Skill>();
@@ -29,7 +30,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 			ActiveDOTs = new List<DOT>();
 			DOTTurnsToWearOff = new List<int>();
 		}
-		public int TakeSkillDamage(Skill skill, Character agressor)
+		public void TakeSkillDamage(Skill skill, Character agressor)
 		{
 			ApplyDOT(skill.Type);
 			double calcDamage = skill.BaseDmg;
@@ -51,11 +52,10 @@ namespace DungeonsAndDevs.Entidades.Personagens
 			calcDamage *= (1 + strengthFactor);
 			double calcDefense = Defense / (1+skill.ArmorPenetration / 100);
 			double damageReduction = (calcDefense / (calcDefense + 40));
-			double finalHealth = Health - (calcDamage - (calcDamage * damageReduction));
-			Health = (int)finalHealth;
+			double finalHealth = (double)CurrentHealth - (calcDamage - (calcDamage * damageReduction));
+			CurrentHealth = (int)finalHealth;
 			int finalDamage = (int)(calcDamage - (calcDamage * damageReduction));
 			Console.WriteLine(Name+ "recebeu "+finalDamage+" de dano de "+skill.Type.ToString());
-            return Health;
 		}
 		//Fire = 70%
 		//Bleed = 60%
@@ -102,7 +102,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 				switch (ActiveDOTs[i])
 				{
 					case DOT.fogo:
-						Health -= 10;
+						CurrentHealth -= 10;
 						fireTotal += 10;
 						DOTTurnsToWearOff[i]--;
                         if (DOTTurnsToWearOff[i] == 0)
@@ -112,7 +112,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 						}
 						break;
 					case DOT.sangramento:
-						Health -= 8;
+						CurrentHealth -= 8;
 						bleedTotal += 8;
 						DOTTurnsToWearOff[i]--;
 						if (DOTTurnsToWearOff[i] == 0)
@@ -122,7 +122,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 						}
 						break;
 					case DOT.veneno:
-						Health -= 5;
+						CurrentHealth -= 5;
 						poisonTotal += 5;
 						DOTTurnsToWearOff[i]--;
 						if (DOTTurnsToWearOff[i] == 0)

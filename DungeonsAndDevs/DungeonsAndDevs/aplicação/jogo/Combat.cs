@@ -4,25 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DungeonsAndDevs.Entidades.Personagens;
 using DungeonsAndDevs.Entidades.Personagens.Inimigos;
 
 namespace DungeonsAndDevs.Aplicação.Jogo
 {
-	public class Combat
+	struct Combat
 	{
-		int bossCounter { get; set; }
-		public Enemy Encounter(bool bossFight)
+		public static void Attack(Character character, Character target, int skillIndex)
 		{
-			Enemy enemy = new Enemy();
-			if (bossFight)
+			for (int i = 0; i < character.Skills.Count; i++)
 			{
-				
+				if (skillIndex == i)
+				{
+					target.TakeSkillDamage(character.Skills[i], character);
+					break;
+				}
 			}
-			else
-			{
-
-			}
-			return enemy;
 		}
 	}
 }

@@ -9,7 +9,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 	public class Enemy : Character
 	{
 		public bool boss { get; set; }
-		public void PickStats(int enemyIndex)
+
+		public void PickStats(int enemyIndex, int stage)
 		{
 			if (boss)
 			{
@@ -17,7 +18,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 				{
 					case 0:
 						Name = "Nerida, A Sereia";
-						Health = 250;
+						CurrentHealth = 250;
 						Strength = 2;
 						Defense = 0;
 						Skills.Add(new Utils.Skill("Grito Estridente", DamageType.impacto, 8, 0, false));
@@ -28,7 +29,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						break;
 					case 1:
 						Name = "Vorax, o Megalodon";
-						Health = 400;
+						CurrentHealth = 300;
 						Strength = 15;
 						Defense = 0;
 						Skills.Add(new Utils.Skill("Fúria das Profundezas", DamageType.impacto, 10, 0, false));
@@ -39,7 +40,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						break;
 					case 2:
 						Name = "Kraken, o Polvo Colossal";
-						Health = 300;
+						CurrentHealth = 350;
 						Strength = 20;
 						Defense = 20;
 						Skills.Add(new Utils.Skill("Esmagamento Profundo", DamageType.impacto, 15, 0, false));
@@ -57,7 +58,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 				{
 					case 0:
 						Name = "Tubarao Branco";
-						Health = 105;
+						CurrentHealth = 105;
 						Strength = 10;
 						Defense = 3;
 						Skills.Add(new Utils.Skill("Fúria Aquática", DamageType.impacto, 10, 0, false));
@@ -67,7 +68,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						break;
 					case 1:
 						Name = "Cardume de Tainha";
-						Health = 98;
+						CurrentHealth = 98;
 						Strength = 3;
 						Defense = 10;
 						Skills.Add(new Utils.Skill("Frenesi Aquático", DamageType.impacto, 10, 0, false));
@@ -78,7 +79,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						break;
 					case 2:
 						Name = "Água Viva";
-						Health = 95;
+						CurrentHealth = 95;
 						Strength = 10;
 						Defense = 10;
 						Skills.Add(new Utils.Skill("Choque Elétrico", DamageType.eletricidade, 10, 10, false));
@@ -89,6 +90,13 @@ namespace DungeonsAndDevs.Entidades.Personagens.Inimigos
 						break;
 				}
 			}
+			double calcHealth = CurrentHealth + (CurrentHealth * (stage / 100));
+			CurrentHealth = (int)calcHealth;
+			double calcStrength = Strength + (Strength * (stage / 100));
+			Strength = (int)calcStrength;
+			double calcDefense = Defense + (Defense * (stage / 100));
+			Defense = (int)calcDefense;
+			MaximumHealth = CurrentHealth;
 		}
 	}
 }

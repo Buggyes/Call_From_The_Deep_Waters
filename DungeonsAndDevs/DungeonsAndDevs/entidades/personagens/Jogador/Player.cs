@@ -8,7 +8,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 {
 	public enum PlayerClass
 	{
-		diver, bombardier, musketeer
+		mergulhador, artilheiro, mosqueteiro
 	};
 	public class Player : Character
 	{
@@ -21,8 +21,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 			}
 			switch (playerClass)
 			{
-				case PlayerClass.diver:
-					Health = 130;
+				case PlayerClass.mergulhador:
+					CurrentHealth = 130;
 					Strength = 5;
 					Defense = 20;
 					Skills.Add(new Utils.Skill("Tiro de arpão", DamageType.perfuracao, 20, 20, false));
@@ -33,8 +33,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 					Disadvantages.Add(DamageType.explosao);
 					break;
 
-				case PlayerClass.bombardier:
-					Health = 100;
+				case PlayerClass.artilheiro:
+					CurrentHealth = 100;
 					Strength = 10;
 					Defense = 5;
 					Skills.Add(new Utils.Skill("Dinamite", DamageType.explosao, 25, 0, true));
@@ -45,8 +45,8 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 					Disadvantages.Add(DamageType.perfuracao);
 					break;
 
-				case PlayerClass.musketeer:
-					Health = 100;
+				case PlayerClass.mosqueteiro:
+					CurrentHealth = 100;
 					Strength = 12;
 					Defense = 10;
 					Skills.Add(new Utils.Skill("Tiro de Concussão", DamageType.impacto, 20, 0, false));
@@ -58,13 +58,14 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 					Disadvantages.Add(DamageType.fogo);
 					break;
 			}
+			MaximumHealth = CurrentHealth;
 		}
 		private void pickName()
 		{
 			Random random = new Random();
 			switch (playerClass)
 			{
-				case PlayerClass.diver:
+				case PlayerClass.mergulhador:
 					int pickedDiverName = random.Next(4);
 					switch (pickedDiverName)
 					{
@@ -82,7 +83,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 							break;
 					}
 					break;
-				case PlayerClass.bombardier:
+				case PlayerClass.artilheiro:
 					int pickedBombName = random.Next(4);
 					switch (pickedBombName)
 					{
@@ -100,7 +101,7 @@ namespace DungeonsAndDevs.Entidades.Personagens.Jogador
 							break;
 					}
 					break;
-				case PlayerClass.musketeer:
+				case PlayerClass.mosqueteiro:
 					int pickedMuskName = random.Next(5);
 					switch (pickedMuskName)
 					{

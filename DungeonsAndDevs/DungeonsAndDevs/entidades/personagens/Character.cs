@@ -55,7 +55,7 @@ namespace DungeonsAndDevs.Entidades.Personagens
 			double finalHealth = (double)CurrentHealth - (calcDamage - (calcDamage * damageReduction));
 			CurrentHealth = (int)finalHealth;
 			int finalDamage = (int)(calcDamage - (calcDamage * damageReduction));
-			Console.WriteLine(Name+ "recebeu "+finalDamage+" de dano de "+skill.Type.ToString());
+			Console.WriteLine(Name+ " recebeu "+finalDamage+" de dano de "+skill.Type.ToString());
 		}
 		//Fire = 70%
 		//Bleed = 60%

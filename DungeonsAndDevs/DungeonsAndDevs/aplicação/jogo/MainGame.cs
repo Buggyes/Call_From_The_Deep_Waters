@@ -61,7 +61,8 @@ namespace DungeonsAndDevs.Aplicação.Jogo
 					enemy.PickStats(rollEnemy,stage);
 					do
 					{
-						PlayerTurn:
+					PlayerTurn:
+						TextDisplay.DisplayEnemyArt(enemy,rollEnemy);
 						TextDisplay.DisplayEnemy(enemy);
 						TextDisplay.DisplayPlayer(player);
 						player.UpdateDOTs();
